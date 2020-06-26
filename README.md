@@ -14,13 +14,11 @@ Webscraping using the selenium library was used to acquire over 2000 full length
 Working with text data can be a nightmare, so I looked for a tool that was specific to longer text data and found NLTK's TextTiling method. This method splits a longer text up into paragraph like chunks using lexile type information like vocabulary and paragraph breaks. Because this method uses paragraph breaks to work, I was able to pass in the raw text data I had scrapped without any additional text pre-processing. With over 100,000 text tiling outputs, I proceeded breakup each paragraph into tokens maintaining the punctuation as its own token. Next, I evaluated both stemming and lemmatization and ultimately decided to only use lemmatization. Lemmatizing this particular dataset seemed to perform better. Most of these texts are open source and were written prior to 1920. In this time period, using apostrophes, dialogue, and regional slang was more more common. The stemming method from NLTK did not seem to stem as frequently when encountering this style of writing. The lemmatizing method managed this type of input at a higher rate.
 
 ### Explore
-The dataset I ended up with after scrubbing tested as a polykurtic distribution as seen below.
+The dataset I ended up with after scrubbing tested as a platykurtic distribution as seen below.
 <img src="data distribution.png">
 
-While some methods are available to adjust for this type of distribution, such as a [hyperbolic power series][link3], they are still theoretical at this point. After further investigation, I determined that this dataset actually performed as a normal distribution up to an alpha of 0.01. I opted to not perform any transformations or further modifications to the data.
+While some methods are available to adjust for this type of distribution, such as a [hyperbolic power series][link3], they are still theoretical at this point. After further investigation, I determined that this dataset actually performed as a normal distribution up to significance level of 1%. I opted to not perform any transformations or further modifications to the data.
 
-### Model
-I selected a classification neural network to model with. I used four dense layers, all with 'SELU' activation, with the fifth layer being the classification layer. I selected this type of activation because of reasons.
 You can see the data spreading out as it is vectorized. Below you'll see the first dimension.
 <img src="High School.png">
 
@@ -37,7 +35,11 @@ In Figure 3, you can see the third dimension. It is at this point that you can s
 
 Figure 3. 3D Vectorized Data
 
-Also, the model during training performed well. I did 250 epochs with 1028 batches. You can see the loss and accuracy during training.
+### Model
+I selected a classification neural network to model with. I used stochastic gradient descent (SGD) as the optimizer to slowly approach the optimal class, and in order to maximize the information preserved in preprocessing, such as punctuation. I used four dense layers, all with scaled exponential linear unit (SELU) activation, with the fifth layer being the softmax layer. Since I didn't normalize the data prior to started the model and used SGD as my optimizer, which destroys normalization as it moves from layer to layer, I decided to use the SELU activation function. This type of activation normalizes as it goes, or is self-normalizing.
+
+Also, the model during training performed well. I did 175 epochs with a batch size of 4112. You can see the loss and accuracy during training below.
+<img src="training loss and accuracy.png">
 
 ## Results and Interpretation
 The model generated has a training accuracy of 90% and testing accuracy of 81%. This model was saved and used to generate a Flask application that has been deployed locally.
