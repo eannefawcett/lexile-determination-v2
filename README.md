@@ -45,7 +45,7 @@ Also, the model during training performed well. I did 175 epochs with a batch si
 The model generated has a training accuracy of 90% and testing accuracy of 81%. This model was saved and used to generate a Flask application that has been deployed locally.
 The confusion matrices below, in Figure 4, show that the model was really good at figuring out which lexile level a text is not.
 
-<img src="reports/images/confusion matrix.png">
+<img src="reports/images/confusion matrix neural network.png">
 
 Figure 4. Confusion Matrices
 
