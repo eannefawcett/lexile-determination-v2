@@ -15,23 +15,23 @@ Working with text data can be a nightmare, so I looked for a tool that was speci
 
 ### Explore
 The dataset I ended up with after scrubbing tested as a platykurtic distribution as seen below.
-<img src="data distribution.png">
+<img src="reports/images/data distribution.png">
 
 While some methods are available to adjust for this type of distribution, such as a [hyperbolic power series][link3], they are still theoretical at this point. After further investigation, I determined that this dataset actually performed as a normal distribution up to significance level of 1%. I opted to not perform any transformations or further modifications to the data.
 
 You can see the data spreading out as it is vectorized. Below you'll see the first dimension.
-<img src="High School.png">
+<img src="reports/images/High School.png">
 
 Figure 1. 1D Vectorized Data for High School Lexile Levels
 
 In Figure 2, you can see the second dimension.
-<img src="2D_Vectorized_Data.png">
+<img src="reports/images/2D_Vectorized_Data.png">
 
 Figure 2. 2D Vectorized Data
 
 In Figure 3, you can see the third dimension. It is at this point that you can see where the different categories start to separate.
 
-<img src="3D_Vectorized_Data.png">
+<img src="reports/images/3D_Vectorized_Data.png">
 
 Figure 3. 3D Vectorized Data
 
@@ -39,13 +39,13 @@ Figure 3. 3D Vectorized Data
 I selected a classification neural network to model with. I used stochastic gradient descent (SGD) as the optimizer to slowly approach the optimal class, and in order to maximize the information preserved in preprocessing, such as punctuation. I used four dense layers, all with scaled exponential linear unit (SELU) activation, with the fifth layer being the softmax layer. Since I didn't normalize the data prior to started the model and used SGD as my optimizer, which destroys normalization as it moves from layer to layer, I decided to use the SELU activation function. This type of activation normalizes as it goes, or is self-normalizing.
 
 Also, the model during training performed well. I did 175 epochs with a batch size of 4112. You can see the loss and accuracy during training below.
-<img src="training loss and accuracy.png">
+<img src="reports/images/training loss and accuracy.png">
 
 ## Results and Interpretation
 The model generated has a training accuracy of 90% and testing accuracy of 81%. This model was saved and used to generate a Flask application that has been deployed locally.
 The confusion matrices below, in Figure 4, show that the model was really good at figuring out which lexile level a text is not.
 
-<img src="confusion matrix.png">
+<img src="reports/images/confusion matrix.png">
 
 Figure 4. Confusion Matrices
 
