@@ -1,0 +1,13 @@
+@import "less/mixins.less";
+
+@pink: #be1a8d;
+
+.custom-highlight{
+    background: @pink;
+    color: #fff;
+    text-shadow: -1px 1px 1px darken(@pink, 15%);
+}
+
+/* Apply custom highlight */
+::-moz-selection{ .custom-highlight; }
+::selection { .custom-highlight; }

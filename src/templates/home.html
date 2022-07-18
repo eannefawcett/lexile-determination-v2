@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Lexile Determination</title>
+<style></style>
+</head>
+
+<body>
+<div id='lexile_title'>
+<center>
+<h1>Lexile Determination</h1>
+</center></div>
+
+<br>
+
+<div id='explanation'><p>Have you ever wondered if a particular text is at an appropriate reading level for your student or child to be reading?</p>
+<p>This application will classify the lexile level of any text, and return whether the content is appropriate for early elementary, late elementary, middle or high school aged readers.</p></div>
+
+<br>
+
+<div><center>
+<form action="{{ url_for('predict') }}" method="post">
+  <label for="user input">Paste in the plain text of whatever you'd like to classify.<br>
+  To do this, first copy the text you'd like to test, then right click in the box below and select 'Paste as plain text'.</label><br><br>
+  <input type="text" id="user.input" name="user.input"><br><br>
+  <input type="submit" value="Submit">
+</form>
+</center>
+</div>
+<h2><center>{{to_post}}</center></h2><br>
+<br><br>
+<div><center>Contact: elizabethfawcett47@gmail.com</center></div>
+</body>
+
+
+</html>

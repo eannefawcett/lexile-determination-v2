@@ -1,0 +1,22 @@
+# ----------------------
+# Flask
+# ----------------------
+flask
+keras==2.2.4
+keras_preprocessing==1.1.0
+tensorflow==1.15.2
+pickle-mixin
+numpy==1.16.5
+nltk==3.4.5
+
+# ----------------------
+# Testing
+# ----------------------
+mock
+
+
+# ----------------------
+# Production Server
+# ----------------------
+gevent
+gunicorn
